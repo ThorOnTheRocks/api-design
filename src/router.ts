@@ -28,7 +28,7 @@ router.get('/update/:id', () => {})
 router.put('/update/:id', 
   body('title').optional(), 
   body('body').optional(), 
-  body('status').isIn(['IN_PROGRESS', 'SHIPPED', 'DEPRECATED']), 
+  body('status').isIn(['IN_PROGRESS', 'SHIPPED', 'DEPRECATED']),
   body('version').optional(), 
   () => {}
 )
