@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body, oneOf } from 'express-validator';
+import { createProduct, getProducts } from './handlers/product';
 import { handleInputErrors } from './middlewares/inputErrors';
 
 const router = Router();
@@ -7,9 +8,7 @@ const router = Router();
 /**
  * Product
 */
-router.get('/product', (req, res) => {
-  res.json({msg: 'message'})
-})
+router.get('/product', getProducts);
 router.get('/product/:id', () => {})
 router.put(
   '/product/:id', 
@@ -17,7 +16,11 @@ router.put(
   handleInputErrors, 
   (req, res) => { }
 )
-router.post('/product', () => {})
+router.post('/product',
+  body('name').isString(), 
+  handleInputErrors,
+  createProduct
+)
 router.delete('/product/:id', () => {})
 
 /**
